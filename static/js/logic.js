@@ -21,10 +21,18 @@ var earthquakeJson;
 
 // Getting our GeoJSON data
 d3.json(earthquakeData).then(function(data) {
-    // Creating a GeoJSON layer with the retrieved data
-    // L.earthquakeJson(data)
-    console.log(data)
-  })
+  // for (var i = 0; i < data.length; i++) {
+  //   var location = data[i].geometry;
+
+   
+  console.log(data)  
+
+    // if (location) {
+      // L.marker(location.coordinates[1], location.coordinates[0]).addTo(myMap)
+  // }
+
+  
+})
 
 
 
