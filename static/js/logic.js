@@ -3,10 +3,10 @@
 ////////////////////////////////
 
 // Creating the map object
-// Using Cheyenne, WA as center point
+// Using Albuquerque, NM as center point
 var myMap = L.map("map", {
-    center: [41.1400, -104.8202],
-    zoom: 5
+    center: [35.0844, -106.6504],
+    zoom: 6
   });
   
   // Adding the tile layer
@@ -17,7 +17,7 @@ var myMap = L.map("map", {
 
 var earthquakeData = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 
-var earthquakeJson
+var earthquakeJson;
 
 // Getting our GeoJSON data
 d3.json(earthquakeData).then(function(data) {
