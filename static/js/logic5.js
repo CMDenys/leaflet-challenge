@@ -27,8 +27,19 @@ d3.json(url).then(function(data) {
         } 
         return magnitude * 4;
     }
+    
 
-//   function getColor()
+    function getColor(myColor) {
+        if (myColor < 2) {
+            myColor = "red"
+        }
+        else if (myColor < 4) {
+            myColor = "yellow"
+        }
+        return myColor
+    }
+
+    
 
     //Create object (array of features)
     L.geoJson(data, {
@@ -36,50 +47,32 @@ d3.json(url).then(function(data) {
             return new L.CircleMarker(latlng, {radius: 8, 
                 fillOpacity: 1, 
                 color: 'black', 
-                // fillColor: getColor(feature.properties.mag),
-                fillColor: "red",
+                fillColor: getColor(feature.properties.mag),
                 weight: 1,
                 radius: getRadius(feature.properties.mag)
             });
+        },
+        onEachFeature: function(feature, layer) {
+            layer.on(
+                {
+                    "mouseover": function(event) {
+                        event.target.bindPopUp()
+                    },
+                    "mouseout": function(event) {
+                        event.target.bindPopUp()
+                    }
+                    // "click": function(event) {
+                    //     console.log(event);
+                    //     myMap.fitBounds(event.target.getBounds());    
+                    // }
+                } 
+            );    
+            layer.bindPopup(`<h2>${feature.properties.mag}</h2><hr>`)
         }
-    }).addTo(myMap);
-});
-
-
-// function getRadius(magnitude) {
-   
-//   <!-- LAYERS/SITES ADD LAYER->
-//   L.geoJson(sites, {
-//       pointToLayer: function (feature, latlng) {
-      
-//       onEachFeature: siteslabels
-//   }).addTo(map);
+    }).addTo(myMap)
+})
 
 
 
-        // earthquakes = {}
-        // earthquake = data.features
-
-        // for (var i = 0; i < earthquake.geometry.coordinates.length; i++) {
-        //     var something = earthquake[0].geometry.coordinates[i]
-        //     console.log(something)
-    //     }
-    // })
-
-
-
-
-    // console.log(earthquake[0].geometry.coordinates)
-
-
-  
-  
-   // data.features.map(features => {
-    //   return features.geometry.coordinates
     
   
-  
-  
-   
-  
-  //or can use .forEach instead of map

@@ -20,7 +20,7 @@ var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_day.geo
 
 
 d3.json(url).then(function(data) {
-  earthquake = data.features
+  var earthquake = data.features
   console.log(earthquake[0].geometry.coordinates)
 
 })
