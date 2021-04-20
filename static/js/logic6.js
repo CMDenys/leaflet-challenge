@@ -51,8 +51,6 @@ d3.json(url).then(function(data) {
         return myColor
     }
 
-    
-
     //Create object (array of features)
     L.geoJson(data, {
         pointToLayer: function(feature, latlng) {
@@ -65,24 +63,42 @@ d3.json(url).then(function(data) {
             });
         },
         onEachFeature: function(feature, layer) {
-            layer.on(
-                {
-                    "mouseover": function(event) {
-                        event.target.bindPopUp()
-                    },
-                    "mouseout": function(event) {
-                        event.target.bindPopUp()
-                    }
-                    // "click": function(event) {
-                    //     console.log(event);
-                    //     myMap.fitBounds(event.target.getBounds());    
-                    // }
-                } 
-            );    
-            layer.bindPopup(`<h2>${feature.properties.mag}</h2><hr>`)
+           layer.bindPopup(`<h2>${feature.properties.place}</h2><hr><h2>Magnitude: ${feature.properties.mag}</h2>`)
+        
         }
+
     }).addTo(myMap)
-})
+
+    
+    var legend = L.control({position: "bottomright"});
+    
+    legend.onAdd = function (map) {
+
+        var div = L.DomUtil.create('div', 'info legend'),
+            quakes = [1, 2, 3, 4, 5, 6, 7, 8],
+            labels = [['<strong> Earthquake Magnitude </strong>']],
+            from, to;
+
+        // loop through our density intervals and generate a label with a colored square for each interval
+        for (var i = 0; i < quakes.length; i++) {
+            from = quakes[i];
+            to = quakes[i + 1];
+
+        labels.push(
+            '<i style="background:' + getColor(from + 1) + '"></i> ' +
+            from + (to ? '&ndash;' + to : '+'))
+        }
+
+        div.innerHTML = labels.join('<br>');
+        return div;
+        
+    };
+    legend.addTo(myMap);
+}) 
+
+
+    
+
 
 
 
