@@ -17,6 +17,6 @@ Now that we know the data is coming in correctly, a base tile layer needs to be 
 
 
 <p float="left" align="center">
-  <img src="images/tilelayer.png" width="500" />
+  <img src="images/tilelayer.png" width="700" />
   <img src="images/map_center.png" width="375" /> 
 </p>
