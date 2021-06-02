@@ -9,8 +9,9 @@ Using D3.js and the .then() method, the url can be called with a promise to exec
 
 To make sure that data is feeding in correctly, console.log() is used.
 
-<p align="center">
-  <img src="images/url.png" width="400" />
+<p float="left" align="center">
+  <img src="images/url.png" width="375" />
+  <img src="images/data.png" width="500" /> 
 </p>
 
 Now that we know the data is coming in correctly, a base tile layer needs to be created.  This layer provides the map for any images to sit on top of.  Because the majority of earthquakes happen on the west coast, I chose to use Albuquerque, NM as the center point.
